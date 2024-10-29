@@ -11,10 +11,13 @@ public class FoodPyramid {
     private OrganismTree tree;
     private static Scanner sc;
     private static final String TYPE = "Is the organism an herbivore / a carnivore / an omnivore? (H / C / O):";
+    private static final String PLANT_ERROR = "ERROR: The cursor is at a plant node. Plants cannot be predators.";
+    private static final String CAPACITY_ERROR = "ERROR: There is no more room for more prey for this predator.";
+    private static final String DIET_ERROR = "ERROR: This prey cannot be added as it does not match the diet of the predator.";
 
-    /**Instantiates FoodPyramid with a apex predator in OrganismTree.
+    /**Instantiates FoodPyramid with an apex predator in OrganismTree.
      *
-     * @param apexPredator
+     * @param apexPredator OrganismNode to set as root/apex predator of OrganismTree.
      */
     public FoodPyramid(OrganismNode apexPredator) {
         tree = new OrganismTree(apexPredator);
@@ -88,15 +91,15 @@ public class FoodPyramid {
      */
     private void pC(){
         if(tree.getCursor().getIsPlant()){
-            System.out.println("ERROR: The cursor is at a plant node. Plants cannot be predators.");
+            System.out.println(PLANT_ERROR);
             return;
         }
         if (tree.getCursor().isFull()){
-            System.out.println("ERROR: There is no more room for more prey for this predator.");
+            System.out.println(CAPACITY_ERROR);
             return;
         }
         if(!tree.getCursor().getIsHerbivore()){
-            System.out.println("ERROR: This prey cannot be added as it does not match the diet of the predator.");
+            System.out.println(DIET_ERROR);
             return;
         }
         try{
@@ -114,15 +117,15 @@ public class FoodPyramid {
      */
     private void aC(){
         if(tree.getCursor().getIsPlant()){
-            System.out.println("ERROR: The cursor is at a plant node. Plants cannot be predators.");
+            System.out.println(PLANT_ERROR);
             return;
         }
         if (tree.getCursor().isFull()){
-            System.out.println("ERROR: There is no more room for more prey for this predator.");
+            System.out.println(CAPACITY_ERROR);
             return;
         }
         if(!tree.getCursor().getIsCarnivore()){
-            System.out.println("ERROR: This prey cannot be added as it does not match the diet of the predator.");
+            System.out.println(DIET_ERROR);
             return;
         }
         try{

@@ -23,7 +23,9 @@ public class OrganismNode {
      * @param isHerbivore Indicates if the organism eats plants
      * @param isCarnivore Indicates if the organism eats animals
      */
-    public OrganismNode(String name, boolean isPlant, boolean isHerbivore, boolean isCarnivore){
+    public OrganismNode(String name, boolean isPlant, boolean isHerbivore,
+      boolean isCarnivore){
+
         this.name = name;
         this.isPlant = isPlant;
         this.isHerbivore = isHerbivore;
@@ -126,12 +128,15 @@ public class OrganismNode {
      * @throws DietMismatchException Indicates that the prey does not match the diet of the organism.
      * @custom_Precondition The organism has space to add children, isn't a plant, and it's diet matches the prey.
      */
-    public void addPrey(OrganismNode preyNode) throws PositionNotAvailableException, IsPlantException, DietMismatchException{
+    public void addPrey(OrganismNode preyNode)
+      throws PositionNotAvailableException, IsPlantException,
+        DietMismatchException{
         if(getIsPlant())
             throw new IsPlantException();
-        if(getLeft() != null && getRight() != null && getMiddle() != null)
+        if(isFull())
             throw new PositionNotAvailableException();
-        if(!(getIsHerbivore() && preyNode.getIsPlant()) || !(getIsCarnivore() && !preyNode.getIsPlant())             )
+        if( (preyNode.getIsPlant() ^ getIsHerbivore() && preyNode.getIsPlant())
+          || (!preyNode.getIsPlant() ^ getIsCarnivore() && !preyNode.getIsPlant()) )
             throw new DietMismatchException();
 
         if (getLeft() == null)

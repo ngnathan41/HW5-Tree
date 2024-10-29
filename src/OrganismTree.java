@@ -119,7 +119,9 @@ public class OrganismTree {
      * @param sb StringBuilder that holds the string representation.
      * @param depth Indicates the depth of the node.
      */
-    private void printOrganismTreeHelper(OrganismNode cursor2, StringBuilder sb, int depth){
+    private void printOrganismTreeHelper(OrganismNode cursor2,
+      StringBuilder sb, int depth){
+
         if(cursor2 == null)
             return;
         String res;
@@ -155,7 +157,9 @@ public class OrganismTree {
             return "";
         if(cursor2.getIsPlant())
             return cursor2.getName() + ", ";
-        return listAllPlantsHelper(cursor2.getLeft()) + listAllPlantsHelper(cursor2.getMiddle()) + listAllPlantsHelper(cursor2.getRight());
+        return listAllPlantsHelper(cursor2.getLeft())
+          + listAllPlantsHelper(cursor2.getMiddle())
+          + listAllPlantsHelper(cursor2.getRight());
     }
 
     /**Helper method that adds child/prey to the cursor.
@@ -169,10 +173,14 @@ public class OrganismTree {
      * @throws IsPlantException Indicates that cursor is a plant and cannot have prey.
      * @throws DietMismatchException Indicates that the input prey does not match the diet of cursor.
      */
-    private void addChild(String name, boolean isHerbivore, boolean isCarnivore, boolean isPlant) throws IllegalArgumentException, PositionNotAvailableException, IsPlantException, DietMismatchException{
-        if(cursor.isFull())
-            throw new PositionNotAvailableException();
-        if((cursor.getLeft() != null && cursor.getLeft().getName().equals(name)) || (cursor.getMiddle() != null && cursor.getMiddle().getName().equals(name)) || (cursor.getRight()!=null && cursor.getRight().getName().equals(name)))
+    private void addChild(String name, boolean isHerbivore,
+      boolean isCarnivore, boolean isPlant)
+      throws IllegalArgumentException, PositionNotAvailableException,
+      IsPlantException, DietMismatchException{
+
+        if((cursor.getLeft() != null && cursor.getLeft().getName().equals(name))
+          || (cursor.getMiddle() != null && cursor.getMiddle().getName().equals(name))
+          || (cursor.getRight()!=null && cursor.getRight().getName().equals(name)))
             throw new IllegalArgumentException();
 
         OrganismNode child = new OrganismNode(name, isPlant, isHerbivore, isCarnivore);
@@ -187,7 +195,8 @@ public class OrganismTree {
      * @throws IsPlantException Indicates that cursor is a plant and cannot have prey.
      * @throws DietMismatchException Indicates that the input prey does not match the diet of cursor.
      */
-    public void addPlantChild(String name) throws IllegalArgumentException, PositionNotAvailableException, IsPlantException, DietMismatchException{
+    public void addPlantChild(String name) throws IllegalArgumentException,
+      PositionNotAvailableException, IsPlantException, DietMismatchException{
         addChild(name, false, false,true);
     }
 
