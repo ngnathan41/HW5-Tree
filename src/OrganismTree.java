@@ -210,7 +210,9 @@ public class OrganismTree {
      * @throws IsPlantException Indicates that cursor is a plant and cannot have prey.
      * @throws DietMismatchException Indicates that the input prey does not match the diet of cursor.
      */
-    public void addAnimalChild(String name, boolean isHerbivore, boolean isCarnivore) throws IllegalArgumentException, PositionNotAvailableException, IsPlantException, DietMismatchException{
+    public void addAnimalChild(String name, boolean isHerbivore,
+      boolean isCarnivore) throws IllegalArgumentException,
+      PositionNotAvailableException, IsPlantException, DietMismatchException{
         addChild(name, isHerbivore, isCarnivore,false);
     }
 

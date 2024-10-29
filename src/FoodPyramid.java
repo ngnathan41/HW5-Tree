@@ -60,7 +60,11 @@ public class FoodPyramid {
             System.out.println("Invalid Type");
         }
 
-        OrganismNode apexPredator = new OrganismNode(apexName, false, (type.equals("H") || type.equals("O")), (type.equals("C") || type.equals("O")));
+        OrganismNode apexPredator = new OrganismNode(apexName,
+   false,
+          (type.equals("H") || type.equals("O")),
+          (type.equals("C") || type.equals("O")));
+
         FoodPyramid tree = new FoodPyramid(apexPredator);
 
         System.out.println("Constructing food pyramid. . .");
@@ -75,9 +79,11 @@ public class FoodPyramid {
                 case "AC": tree.aC(); break;
                 case "RC": tree.rC(); break;
                 case "P": tree.p(); break;
-                case "C": System.out.println(tree.getTree().listFoodChain());break;
+                case "C": System.out.println(tree.getTree().listFoodChain());
+                  break;
                 case "F": tree.getTree().printOrganismTree(); break;
-                case "LP": System.out.println(tree.getTree().listAllPlants()); break;
+                case "LP": System.out.println(tree.getTree().listAllPlants());
+                  break;
                 case "R": tree.getTree().cursorReset();
                 System.out.println("Cursor successfully reset to root");break;
                 case "M": tree.m(); break;
@@ -105,7 +111,9 @@ public class FoodPyramid {
         try{
             String name = sc.nextLine();
             tree.addPlantChild(name);
-            System.out.println(name + " has successfully been added as prey for the " + getTree().getCursor().getName() + "!");
+            System.out.println(name +
+              " has successfully been added as prey for the "
+              + getTree().getCursor().getName() + "!");
         }
         catch(Exception e){
             System.out.println("ERROR: This prey already exists for this predator");
@@ -138,8 +146,11 @@ public class FoodPyramid {
                     break;
                 System.out.println("Invalid Type");
             }
-            tree.addAnimalChild(name, (type.equals("H") || type.equals("O")), (type.equals("C") || type.equals("O")));
-            System.out.println("A(n) " + name + " has successfully been added as prey for the " + getTree().getCursor().getName() + "!");
+            tree.addAnimalChild(name, (type.equals("H") || type.equals("O")),
+              (type.equals("C") || type.equals("O")));
+            System.out.println("A(n) " + name +
+              " has successfully been added as prey for the "
+              + getTree().getCursor().getName() + "!");
         }
         catch(Exception e){
             System.out.println("ERROR: This prey already exists for this predator");
@@ -154,10 +165,13 @@ public class FoodPyramid {
         String name = sc.nextLine();
         try{
             tree.removeChild(name);
-            System.out.println("A(n) " + name + " has been successfully removed as prey for the " + getTree().getCursor().getName() + "!");
+            System.out.println("A(n) " + name +
+              " has been successfully removed as prey for the "
+              + getTree().getCursor().getName() + "!");
         }
         catch(Exception e){
-            System.out.println(name + " is not a child of " + getTree().getCursor().getName());
+            System.out.println(name + " is not a child of " +
+              getTree().getCursor().getName());
         }
     }
 
