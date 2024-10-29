@@ -1,14 +1,29 @@
 import java.util.Scanner;
+
+/**FoodPyramid represents a food pyramid and implements a CLI to interact with the pyramid.
+ * @author Nathan Ng
+ *  email: nathan.ng@stonybrook.edu
+ *  ID: 116188023
+ *  Recitation: 4
+ */
 public class FoodPyramid {
 
     private OrganismTree tree;
     private static Scanner sc;
     private static final String TYPE = "Is the organism an herbivore / a carnivore / an omnivore? (H / C / O):";
 
+    /**Instantiates FoodPyramid with a apex predator in OrganismTree.
+     *
+     * @param apexPredator
+     */
     public FoodPyramid(OrganismNode apexPredator) {
         tree = new OrganismTree(apexPredator);
     }
 
+    /**Returns the OrganismTree of FoodPyramid.
+     *
+     * @return OrganismTree.
+     */
     public OrganismTree getTree() {
         return tree;
     }
@@ -33,6 +48,7 @@ public class FoodPyramid {
         String apexName = sc.nextLine();
         String type;
 
+        //Probes user for details about the apex predator.
         while(true) {
             System.out.println(TYPE);
             type = sc.nextLine();
@@ -67,7 +83,10 @@ public class FoodPyramid {
         }
     }
 
-    public void pC(){
+    /**Helper method to add a plant child to the cursor of the tree.
+     *
+     */
+    private void pC(){
         if(tree.getCursor().getIsPlant()){
             System.out.println("ERROR: The cursor is at a plant node. Plants cannot be predators.");
             return;
@@ -90,7 +109,10 @@ public class FoodPyramid {
         }
     }
 
-    public void aC(){
+    /**Helper method to add animal child to the cursor of the tree.
+     *
+     */
+    private void aC(){
         if(tree.getCursor().getIsPlant()){
             System.out.println("ERROR: The cursor is at a plant node. Plants cannot be predators.");
             return;
@@ -121,7 +143,10 @@ public class FoodPyramid {
         }
     }
 
-    public void rC(){
+    /**Helper method that removes the child of the cursor of the tree with inputted name.
+     *
+     */
+    private void rC(){
         System.out.println("What is the name of the organism to be removed?:");
         String name = sc.nextLine();
         try{
@@ -133,7 +158,10 @@ public class FoodPyramid {
         }
     }
 
-    public void p(){
+    /**Helper method that prints out the prey of the cursor of the tree.
+     *
+     */
+    private void p(){
         try{
             System.out.println(tree.listPrey());
         }
@@ -142,7 +170,10 @@ public class FoodPyramid {
         }
     }
 
-    public void m(){
+    /**Helper method that moves cursor to the specified name.
+     *
+     */
+    private void m(){
         String name = sc.nextLine();
         try{
             tree.moveCursor(name);
